@@ -19,32 +19,32 @@ defmodule EnvList do
     [head|add(tail, key,value)]
   end
 
-#If list is empty return nothing
-  def lookup([], _key) do
-     nil
-    end
-#If list contains key return key and value
 
-  def lookup([{key,_}=keyval|_], key) do
-    keyval
-  end
+def lookup([],key) do
+  []
+end
 
-#If list head doesnt contain key, rerun for map-head as list untill list is empty or head contains key
-  def lookup([_|map], key) do
-    lookup(map, key)
-  end
+def lookup([head|tail],key) do
+  case {[head|tail],key} do
 
-#If list empty return empty list
-  def remove([], _key) do
-    []
+    {[{^key,_}|_],_} -> head
+
+    _ -> lookup(tail, key)
   end
-#If list head contains key, return map - head
-  def remove([{key,_}|map], key) do
-     map
-    end
-#If list head doesnt contain key, chop off head and try again untill empty list
-  def remove([keyval|map], key) do
-    [keyval|remove(map, key)]
+end
+
+
+def remove([],_key) do
+  []
+end
+
+def remove([head|tail],key) do
+  case {[head|tail],key} do
+
+    {[{^key,_}|_],_} -> tail
+
+    _ -> [head|remove(tail, key)]
   end
+end
 
 end
