@@ -73,9 +73,7 @@ end
     Enum.sort(codes(tree, [], []), fn({_,x},{_,y}) -> length(x) < length(y) end)
   end
 
-
-
-  def codes( a, code) do
+  def codes(a, code) do
     [{a, Enum.reverse(code)}]
   end
   def codes({char1, char2}, path, current) do
