@@ -18,8 +18,19 @@ defmodule Train do
     List.delete(xs, y)
     |> Enum.split(position(xs ,y)-1)
   end
-end
 
+  def main([], n) do
+    {n, [], []}
+  end
+  def main([h|t], n) do
+    case main(t, n) do
+  {0, leftlist, rightlist} ->
+    {0, [h|leftlist], rightlist}
+  {n, leftlist, rightlist} ->
+    {n-1, leftlist, [h|rightlist]}
+    end
+end
+end
 defmodule Moves do
   def sequence([],state) do [state] end
   def sequence([move|list],state) do
