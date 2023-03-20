@@ -1,3 +1,3 @@
 # Elixir
 
-ID1019, Functional programming
+ID1019: Functional programming
